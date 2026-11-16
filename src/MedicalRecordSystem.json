@@ -1,0 +1,576 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "authorized",
+        "type": "bool"
+      }
+    ],
+    "name": "DoctorAuthorizationChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RecordAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RecordDeleted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RecordUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum MedicalRecordSystem.Role",
+        "name": "previousRole",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum MedicalRecordSystem.Role",
+        "name": "newRole",
+        "type": "uint8"
+      }
+    ],
+    "name": "RoleAssigned",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "patientName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "birthDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "gender",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "bloodType",
+            "type": "string"
+          },
+          {
+            "internalType": "uint16",
+            "name": "heightCmX10",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "weightKgX10",
+            "type": "uint16"
+          },
+          {
+            "internalType": "string",
+            "name": "medicalHistory",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "allergies",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "complaint",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "diagnosis",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "medications",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "notes",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct MedicalRecordSystem.MedicalData",
+        "name": "data",
+        "type": "tuple"
+      }
+    ],
+    "name": "addRecord",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "admin",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "enum MedicalRecordSystem.Role",
+        "name": "newRole",
+        "type": "uint8"
+      }
+    ],
+    "name": "assignRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      }
+    ],
+    "name": "authorizedDoctors",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "deleteRecord",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      }
+    ],
+    "name": "getRecordCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "offset",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecordsPage",
+    "outputs": [
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "patientName",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "birthDate",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "gender",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "bloodType",
+                "type": "string"
+              },
+              {
+                "internalType": "uint16",
+                "name": "heightCmX10",
+                "type": "uint16"
+              },
+              {
+                "internalType": "uint16",
+                "name": "weightKgX10",
+                "type": "uint16"
+              },
+              {
+                "internalType": "string",
+                "name": "medicalHistory",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "allergies",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "complaint",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "diagnosis",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "medications",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "notes",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct MedicalRecordSystem.MedicalData",
+            "name": "data",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "updatedAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "doctor",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct MedicalRecordSystem.Record[]",
+        "name": "page",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "roleEpoch",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "roles",
+    "outputs": [
+      {
+        "internalType": "enum MedicalRecordSystem.Role",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "schemaVersion",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "doctor",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "setDoctorAuthorization",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "patient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "patientName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "birthDate",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "gender",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "bloodType",
+            "type": "string"
+          },
+          {
+            "internalType": "uint16",
+            "name": "heightCmX10",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "weightKgX10",
+            "type": "uint16"
+          },
+          {
+            "internalType": "string",
+            "name": "medicalHistory",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "allergies",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "complaint",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "diagnosis",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "medications",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "notes",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct MedicalRecordSystem.MedicalData",
+        "name": "data",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateRecord",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
