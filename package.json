@@ -1,15 +1,17 @@
 {
   "name": "hospital-dapp",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/start-dev.mjs",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
     "compile:contract": "node scripts/compile-contract.mjs",
-    "test": "npm run compile:contract && node tests/contract.mjs && node tests/ui.mjs"
+    "test": "npm run compile:contract && node --test tests/hybrid.mjs",
+    "demo": "node scripts/start-dev.mjs --demo",
+    "api": "node server/start.mjs"
   },
   "dependencies": {
     "ethers": "^6.17.0",

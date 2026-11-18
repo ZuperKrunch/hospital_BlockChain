@@ -1,8 +1,6 @@
 name: Deploy Hospital Web
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -33,7 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build hospital web
-        run: npm run build -- --base=/hospital_BlockChain/
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+        run: npm run build -- --base=/Blockchain/
 
       - uses: actions/configure-pages@v6
 
